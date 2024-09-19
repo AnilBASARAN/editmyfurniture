@@ -10,7 +10,7 @@ const FurnitureItem = (props) => {
   return (
     <div className="flex m-8 border rounded-lg shadow-md border-stone-300 overflow-clip">
       <img
-        alt=""
+      alt=""
         src={furniture.image}
         className="object-cover w-48 h-48 border-r border-stone-300"
       />
@@ -47,8 +47,13 @@ const FurnitureItem = (props) => {
             isEditing ?
             
             (<button className="px-4 py-2 mx-1 bg-green-500 rounded-lg text-red-50 hover:bg-red-600"
-            onClick={()=>{
-              setIsEditing(true);
+            onClick={ async ()=>{
+             await FurnitureService.updateFurniture(furniture.id,{
+               name: furnitureName ,
+               description: furnitureDescription
+             })
+              setIsEditing(false);
+              fetchFurnitures();
             }}
             >
             <i className="mr-1 fa-solid fa-check"></i>
